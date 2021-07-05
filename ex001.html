@@ -43,27 +43,27 @@
         <div class="row col-md-3">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input class="form-control" type="text" nome="Nome" id="nome">
+                <input class="form-control" type="text" nome="Nome" id="nome" required maxlength="25">
             </div>
             <div class="form-group">
                 <label for="nome">Idade:</label>
-                <input class="form-control" type="text" nome="Nome" id="idade">
+                <input class="form-control" type="text" nome="Nome" id="idade" required maxlength="3">
             </div>
             <div class="form-group">
                 <label for="nome">Telefone:</label>
-                <input class="form-control" type="text" nome="Nome" id="telefone">
+                <input class="form-control" type="text" nome="Nome" id="telefone" required maxlength="15">
             </div>
             <div class="form-group">
                 <label for="nome">Endereço:</label>
-                <input class="form-control" type="text" nome="Nome" id="endereco">
+                <input class="form-control" type="text" nome="Nome" id="endereco" required maxlength="40">
             </div>
             <div class="form-group">
                 <label for="nome">Bairro:</label>
-                <input class="form-control" type="text" nome="Nome" id="bairro">
+                <input class="form-control" type="text" nome="Nome" id="bairro" required maxlength="15">
             </div>
             <div class="form-group">
                 <label for="nome">Cidade:</label>
-                <input class="form-control" type="text" nome="Nome" id="cidade">
+                <input class="form-control" type="text" nome="Nome" id="cidade" required maxlength="20">
             </div>
             <div.a { line-height: normal; } </div>
 
@@ -128,6 +128,20 @@
 
             document.contador = document.contador +1;
         }
+
+        /*
+                nome nao pode ser em branco
+                idade nao pode ser em banco
+                idade preicsa ser um numero de 1 a 99
+                telefone deve ser numero de 11 algarismos
+                endereço nao pode ser em branco
+                bairro nao pode ser em branco
+                cidad nao pode ser em branco
+                
+
+
+
+        */
 
     </script>
 </body>
