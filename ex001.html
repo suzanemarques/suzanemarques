@@ -23,6 +23,7 @@
             border: solid 1px black;
             border-collapse: collapse;
             border-spacing: 0;
+    
 
         }
 
@@ -43,7 +44,7 @@
         <div class="row col-md-3">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input class="form-control" type="text" nome="Nome" id="nome" required maxlength="25">
+                <input class="form-control" type="text" nome="Nome" id="nome" required maxlength="25" minlength="3" >
             </div>
             <div class="form-group">
                 <label for="nome">Idade:</label>
@@ -65,15 +66,18 @@
                 <label for="nome">Cidade:</label>
                 <input class="form-control" type="text" nome="Nome" id="cidade" required maxlength="20">
             </div>
-            <div.a { line-height: normal; } </div>
-
-
+            <div .a {line-height.normal}</div> 
+        
                 <br>
                 <div class="row">
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-success" id="buttonsave" onclick="inserirDados()">Salvar</button>
+                        <button type="submit" class="btn btn-success" id="buttonsave" onclick="alert('Preenchimento de campos obrigatórios')">Salvar</button>
                         <br>
                     </div>
+
+                    <div>
+                    
+        
 
                 </div>
                 <br>
@@ -118,6 +122,7 @@
             document.getElementsByTagName('tr')[document.contador].getElementsByTagName('td')[5].innerText = document.getElementById('cidade').value
         
 
+            function inserirDados() {
             document.getElementById('nome').value = '';
             document.getElementById('idade').value = '';
             document.getElementById('telefone').value = '';
@@ -126,7 +131,19 @@
             document.getElementById('cidade').value = ''
 
     
-            alert ('Campo obrigatório.')
+
+            }
+             alert ('Todos os campos são obrigatórios.')
+            
+            
+               
+                
+
+                    
+                
+
+
+            
 
 
             document.contador = document.contador +1;
