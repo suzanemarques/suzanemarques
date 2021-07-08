@@ -33,10 +33,7 @@
         }
     </style>
 </head>
-
 <body>
-
-    
     <div>
         <h1>AGENDA 2021</h1> 
         <form>
@@ -45,38 +42,49 @@
     <div style="width:40%"> 
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input class="form-control" type="text" nome="Nome"  id="nome" required><br>
+            <input class="form-control" type="text" nome="Nome"  id="nome" 
+            data-is-module="charCounter" name="Nome" placeholder="Digite Nome e Sobrenome"><br>
          </div>
         <div class="form-group">
             <label for="nome">Idade:</label>
-            <input class="form-control" type="number" nome="Nome" id="idade" required><br>
+            <input class="form-control" type="number" nome="Nome" id="idade" 
+            data-is-module="charCounter" min="1" max="120" name="quantity" placeholder="Digite sua Idade" required><br>
         </div>
         <div class="form-group">
             <label for="nome">Telefone:</label>
-            <input class="form-control" type="number" nome="Nome" id="telefone" required><br>
+            <input class="form-control" type="text" nome="Nome" id="telefone"
+            data-is-module="charCounter" maxlength="15" name="telefone" placeholder="(00) 00000 000" required><br>
              </div>
         <div class="form-group">
             <label for="nome">Endereço:</label>
-            <input class="form-control" type="text" nome="Nome" id="endereco" required><br>
+            <input class="form-control" type="text" nome="Nome" id="endereco" 
+            data-is-module="charCounter" minlength="10" maxlength="120" name="Endereco" placeholder="Digite o seu Endereço" required><br>
         </div>
         <div class="form-group">
             <label for="nome">Bairro:</label>
-            <input class="form-control" type="text" nome="Nome" id="bairro" required><br>
+            <input class="form-control"type="text" nome="Nome" id="bairro"
+            data-is-module="charCounter" minlength="10" maxlength="40" name="Bairro" placeholder="Digite o seu Bairro"  required><br>
         </div>
         <div class="form-group">
             <label for="nome">Cidade:</label>
-            <input class="form-control" type="text" nome="Nome" id="cidade" required><br>
+            <input class="form-control"type="text" nome="Nome" id="cidade" 
+            required data-is-module="charCounter" minlength="10" maxlength="40" name="Cidade"
+             placeholder="Digite o nome da Cidade" required><br>
+            
         </div>
     </form>
     <br>
     <div class="row">
         <div class="col-md-2">
-            <button type="button"  class="btn btn-success" onclick="salvar()">Salvar</button>
+            <button type="button" class="btn btn-success" onmouseout="removeClass(this)" 
+            onmouseover="mudarClasseBotao(this)" onclick="salvar()">Salvar</button>
             <br>
         </div>
     </div>
     <br>
-    <table id="dados" >
+    
+    <table id= "dados" >
+        <head>
         <tr>
             <th>Nome</th>
             <th>Idade</th>
@@ -85,8 +93,19 @@
             <th>Bairro</th>
             <th>Cidade</th>
         </tr>
+        </head>
     </table>
     <script>
+    
+        
+
+        function removeClass(element){
+            element.classList.remove("btn-danger");
+        }
+
+        function mudarClasseBotao(element){
+            element.classList.add("btn-danger");
+        }
 
         function createDOMElement(str) {
             let temp = document.createElement('template');
@@ -94,7 +113,7 @@
             return temp;
         }
     
-        function salvar(){
+        function salvar(nome, idade, telefone, endereco, bairro, cidade){
             try{
 
                 var linhaNova = createDOMElement(`
@@ -108,16 +127,18 @@
                         </tr>
                 `);
 
-                setDadosCellValue("nome", true, linhaNova);
-                setDadosCellValue("idade", true, linhaNova);
-                setDadosCellValue("telefone", true, linhaNova);
-                setDadosCellValue("endereco", true, linhaNova);
-                setDadosCellValue("bairro", true, linhaNova);
-                setDadosCellValue("cidade", true, linhaNova);
+                setDadosCellValue("nome", linhaNova);
+                setDadosCellValue("idade", linhaNova);
+                setDadosCellValue("telefone", linhaNova);
+                setDadosCellValue("endereco", linhaNova);
+                setDadosCellValue("bairro", linhaNova);
+                setDadosCellValue("cidade", linhaNova);
 
-                let content = document.getElementById('dados').innerHTML;
+                let content = document.getElementById("dados").innerHTML;
 
-                document.getElementById('dados').innerHTML = content + linhaNova.innerHTML;
+                document.getElementById("dados").innerHTML = content + linhaNova.innerHTML;
+
+                
 
                 limparCampos();
 
@@ -135,12 +156,36 @@
             document.getElementById('bairro').value = '';
             document.getElementById('cidade').value = '';
         }
+        
+        const validacoes = {
+            nome: validaNome, 
+        
+        };
+
+        // () => console.log('teste'); // função lambda.
+
+        function validaNome(value){
+            if(value == '')
+                return "O campo nome é obrigatório";
+
+            if(value.length < 5 || value.length > 60)
+                return "O campo nome precisa ter de 5 a 60 caractéres.";
+
+        
+        
+             
+        }
+
+        
+         
 
 
-        function setDadosCellValue(name, required, linhaNova){
-            if(required && getFieldValue(name) == ""){
-                let message = name + " field is required.";
-                throw Error(message);
+        function setDadosCellValue(name, linhaNova){
+
+            var error = validacoes[name] && validacoes[name](getFieldValue(name));
+            
+            if(error){
+                throw Error(error);
             }
 
             var campos = ["nome", "idade", "telefone", "endereco", "bairro", "cidade"];
@@ -156,9 +201,13 @@
 
         function setCellValue(linhaNova, cellIndex, value){
             linhaNova.content.firstChild.getElementsByTagName('td')[cellIndex].innerText = value;
-        }
 
+
+        }   
         /*
+            validação
+            a aparencia dos campos
+
                 nome: min: 5, max 60, required
                 idade: min 0, max 120, required
                 telefone: formato 00 00000-0000
