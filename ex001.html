@@ -43,32 +43,32 @@
         <div class="form-group">
             <label for="nome">Nome:</label>
             <input class="form-control" type="text" nome="Nome"  id="nome" 
-            data-is-module="charCounter" name="Nome" placeholder="Digite Nome e Sobrenome"><br>
+            data-is-module="charCounter" minlength="5" maxlength="60" placeholder="Digite Nome e Sobrenome" required><br>
          </div>
         <div class="form-group">
             <label for="nome">Idade:</label>
-            <input class="form-control" type="number" nome="Nome" id="idade" 
-            data-is-module="charCounter" min="1" max="120" name="quantity" placeholder="Digite sua Idade" required><br>
+            <input class="form-control" type="text" nome="idade" id="idade" 
+            data-is-module="charCounter" minlength="1" maxlength="120" placeholder="Digite sua Idade" required><br>
         </div>
         <div class="form-group">
             <label for="nome">Telefone:</label>
-            <input class="form-control" type="text" nome="Nome" id="telefone"
-            data-is-module="charCounter" maxlength="15" name="telefone" placeholder="(00) 00000 000" required><br>
+            <input class="form-control" type="text" id="telefone" onblur="mascaraDeTelefone(this)"
+            data-is-module="charCounter" maxlength="14" name="telefone" placeholder="(00)00000-000"><br>
              </div>
         <div class="form-group">
             <label for="nome">Endereço:</label>
-            <input class="form-control" type="text" nome="Nome" id="endereco" 
-            data-is-module="charCounter" minlength="10" maxlength="120" name="Endereco" placeholder="Digite o seu Endereço" required><br>
+            <input class="form-control" type="text" nome="endereco" id="endereco" 
+            data-is-module="charCounter" minlength="10" maxlength="120" placeholder="Digite o seu Endereço" required><br>
         </div>
         <div class="form-group">
             <label for="nome">Bairro:</label>
-            <input class="form-control"type="text" nome="Nome" id="bairro"
-            data-is-module="charCounter" minlength="10" maxlength="40" name="Bairro" placeholder="Digite o seu Bairro"  required><br>
+            <input class="form-control"type="text" nome="bairro" id="bairro"
+            data-is-module="charCounter" minlength="10" maxlength="40" placeholder="Digite o seu Bairro" required><br>
         </div>
         <div class="form-group">
             <label for="nome">Cidade:</label>
-            <input class="form-control"type="text" nome="Nome" id="cidade" 
-            required data-is-module="charCounter" minlength="10" maxlength="40" name="Cidade"
+            <input class="form-control"type="text" nome="cidade" id="cidade" 
+            required data-is-module="charCounter" minlength="10" maxlength="40"
              placeholder="Digite o nome da Cidade" required><br>
             
         </div>
@@ -95,9 +95,11 @@
         </tr>
         </head>
     </table>
-    <script>
+    <script>     
     
-        
+        function mascaraDeTelefone(telefone) {
+            const textoAtual=telefone.value;
+        }
 
         function removeClass(element){
             element.classList.remove("btn-danger");
@@ -159,27 +161,78 @@
         
         const validacoes = {
             nome: validaNome, 
-        
+            idade: validaIdade,
+            telefone: validaTelefone,
+            endereco: validaEndereco,
+            bairro: validaBairro,
+            cidade: validaCidade,
+
         };
-
         // () => console.log('teste'); // função lambda.
-
         function validaNome(value){
             if(value == '')
                 return "O campo nome é obrigatório";
 
             if(value.length < 5 || value.length > 60)
                 return "O campo nome precisa ter de 5 a 60 caractéres.";
+        }
+        function validaIdade(value){
+            if(value == '')
+            return "O campo idade é obrigatório";
 
-        
-        
-             
+            if(parseInt(value) < 1 || parseInt(value) > 120)
+            return "A idade precisar estar entre 1 e 120"
+        }
+        function validaTelefone(value){
+            if(value == '')
+                return "O campo telefone é obrigatório";
+
+            if(value.length > 13)
+                return "O campo telefone precisa ter 13 caractéres.";
+        }
+        function validaEndereco(value){
+            if(value == '')
+            return "O campo endereco é obrigatório";
+
+            if(value.length > 120)
+                return "O campo endereco precisa ter no máximo 120 caractéres.";
+        }
+        function validaBairro(value){
+            if(value == '')
+                return "O campo bairro é obrigatório";
+
+            if(value.length > 40)
+                return "O campo bairro precisa ter maximo 40 caractéres.";
+        }
+        function validaCidade(value){
+            if(value == '')
+                return "O campo cidade é obrigatório";
+
+            if(value.length > 40)
+                return "O campo cidade precisa ter maximo 40 caractéres.";
+
         }
 
-        
-         
 
 
+
+        function mascaraDeTelefone(telefone){
+            const textoAtual= telefone.value;
+            const isCelular= textoAtual.length===10;
+            let textoAjustado;
+            if(isCelular){
+                }else{
+            textoAjustado=textoAtual.replace(/(\d{5})(\d{4})/,
+                  function(regex,arg1, arg2){
+                  return arg1 + '-' +arg2;
+
+                });
+
+            }
+            telefone.value=textoAjustado;
+        }
+
+              
         function setDadosCellValue(name, linhaNova){
 
             var error = validacoes[name] && validacoes[name](getFieldValue(name));
@@ -203,7 +256,19 @@
             linhaNova.content.firstChild.getElementsByTagName('td')[cellIndex].innerText = value;
 
 
+
         }   
+
+
+        function tiraHifen(telefone) {
+            const textoAtual=telefone.value;
+            const textoAjustado=textoAtual.replace(/\-/g,);
+
+            telefone.value=textoAjustado;
+        }
+
+        
+
         /*
             validação
             a aparencia dos campos
