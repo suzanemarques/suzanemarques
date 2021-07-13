@@ -1,9 +1,24 @@
-
-       $(function(){
+$(function(){
         
         $('.sp_celphones').mask('(00) 00000-0000');
         
         $('.cep').mask('00000-000');
+
+        $('.email').mask('')
+
+    
+        function showName() {
+            var myLocalVariable= 'My local variable.';
+
+            console.log(myGlobalVariable);
+
+            console.log(myLocalVariable);
+        
+
+} 
+        function mascaraDeEmail(email)  {
+            const textoAtual=email.value;
+        } 
     
         function mascaraDeTelefone(telefone) {
             const textoAtual=telefone.value;
@@ -22,8 +37,11 @@
             temp.innerHTML = str.trim();
             return temp;
         }
-    
-        function salvar(nome, idade, telefone, endereco, bairro, cidade, cep, email){
+        
+        
+        document.salvar = salvar;
+        
+        function salvar(){
             try{
 
                 var linhaNova = createDOMElement(`
@@ -84,6 +102,9 @@
             cidade: validaCidade,
             cep: validaCep,
             email: validaEmail,
+            
+
+            
 
         };
         // () => console.log('teste'); // função lambda.
@@ -132,29 +153,31 @@
         }
         function validaCep(value){
            if(value == '')
-                  return "O campo cep é obrigatótio.";
+                return "O campo cep é obrigatótio.";
 
                  
-                  if(value.length > 9)
+            if(value.length > 9)
                 return "O campo cep precisa ter máximo 9 caracteres.";
 
                   if(!value.match(/^[0-8]{5}[-][0-8]{3}$/))
                 return "O campo cep precisa ter máximo 9 caracteres.";
 
-
         }
-
         function validaEmail(value){
             if(value == '')
-                  return "O campo email é obrigatório.";
+                return "O campo email é obrigatótio.";
 
-            if(value.length > 60)
-                  return "O campo email precisa ter no máximo 60 caracteres.";
-
-        }
-
-
-        function setDadosCellValue(name, linhaNova) {
+                var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+				 if(filtro.test(email)){
+				$('#email').removeClass("campo-erro");
+			 } else {
+				   $('#email').addClass("campo-erro");
+				  
+			 }
+		  }
+    	 return false;
+        
+      		function setDadosCellValue(name, linhaNova) {
 
             var error = validacoes[name] && validacoes[name](getFieldValue(name));
             
@@ -208,4 +231,4 @@
                 bairro: max characteres 40, required
                 cidade: max characteres 40, required
         */
-   });
+});
