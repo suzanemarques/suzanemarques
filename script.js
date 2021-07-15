@@ -133,8 +133,8 @@ $(function(){
             if(value.length > 9)
                 return "O campo cep precisa ter máximo 9 caracteres.";
 
-            // if(!value.match(/^[0-8]{5}[-][0-8]{3}$/));
-            //     return "O campo cep precisa ter máximo 9 caracteres.";
+             if(!value.match(/^[0-9]{5}[-][0-9]{3}$/))
+                 return "O campo cep precisa ter máximo 9 caracteres.";
 		}
 
         function validaEmail(value) {
