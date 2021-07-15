@@ -30,7 +30,7 @@ $(function(){
                 `);
 
                 setDadosCellValue("nome", linhaNova);
-                setDadosCellValue("idade", linhaNova);
+                setDadosCellValue("dtnasc", linhaNova);
                 setDadosCellValue("telefone", linhaNova);
                 setDadosCellValue("endereco", linhaNova);
                 setDadosCellValue("bairro", linhaNova);
@@ -57,7 +57,7 @@ $(function(){
             $("#nome").val(''); // Jquery
 
             document.getElementById('nome').value = '';
-            document.getElementById('idade').value = '';
+            document.getElementById('dtnasc').value = '';
             document.getElementById('telefone').value = '';
             document.getElementById('endereco').value = '';
             document.getElementById('bairro').value = '';
@@ -69,7 +69,7 @@ $(function(){
         
         const validacoes = {
             nome: validaNome, 
-            idade: validaIdade,
+            dtnasc: validaDtnasc,
             telefone: validaTelefone,
             endereco: validaEndereco,
             bairro: validaBairro,
@@ -86,12 +86,19 @@ $(function(){
                 return "O campo nome precisa ter de 5 a 60 caractéres.";
         }
 
-        function validaIdade(value) {
-            if(value == '')
-                return "O campo idade é obrigatório.";            
+        //function validaIdade(value) {
+            //if(value == '')
+                //return "O campo idade é obrigatório.";            
 
-            if(parseInt(value) < 1 || parseInt(value) > 120)
-                return "A idade precisar estar entre 1 e 120.";
+            //if(parseInt(value) < 1 || parseInt(value) > 120)
+                //return "A idade precisar estar entre 1 e 120.";
+        //}
+
+        function validaDtnasc(value) {
+            if(value == '')
+                return "O campo data de nascimento é obrigatório.";            
+
+            
         }
 
         function validaTelefone(value) {
@@ -151,7 +158,7 @@ $(function(){
             if(error){
                 throw Error(error);
             }
-            var campos = ["nome", "idade", "telefone", "endereco", "bairro", "cidade","cep","email",];
+            var campos = ["nome", "dtnasc", "telefone", "endereco", "bairro", "cidade","cep","email",];
             var cellIndex = campos.indexOf(name);
             setCellValue(linhaNova, cellIndex, getFieldValue(name));
         }
