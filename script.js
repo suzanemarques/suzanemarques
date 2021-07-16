@@ -38,6 +38,8 @@ $(function(){
                 setDadosCellValue("cep", linhaNova);
                 setDadosCellValue("email", linhaNova);
 
+                
+            
                 let content = document.getElementById("dados").innerHTML;
 
                 document.getElementById("dados").innerHTML = content + linhaNova.innerHTML;
@@ -53,17 +55,29 @@ $(function(){
         }
 
         function limparCampos(){
-            document.getElementById('nome').value = ''; //JavaScript puro ou Vanilla
+            //document.getElementById('nome').value = ''; //JavaScript puro ou Vanilla
             $("#nome").val(''); // Jquery
+            $("#dtnasc").val(''); 
+            $("#telefone").val(''); 
+            $("#endereco").val(''); 
+            $("#bairro").val('');
+            $("#cidade").val(''); 
+            $("#cep").val(''); 
+            $("#email").val(''); 
 
-            document.getElementById('nome').value = '';
+
+ 
+
+
+
+            /*document.getElementById('nome').value = '';
             document.getElementById('dtnasc').value = '';
             document.getElementById('telefone').value = '';
             document.getElementById('endereco').value = '';
             document.getElementById('bairro').value = '';
             document.getElementById('cidade').value = '';
             document.getElementById('cep').value = '';
-            document.getElementById('email').value = '';
+            document.getElementById('email').value = '';*/
 
         }
         
