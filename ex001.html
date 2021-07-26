@@ -8,6 +8,7 @@
     <script type="text/javascript"></script>
     <script type="text/javascript" src="jquery-3.6.0.min.js" ></script>
     <script type="text/javascript" src="script.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" 
     integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" estilo.css></script>
@@ -31,7 +32,7 @@
     <div style="width:40%"> 
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input class="form-control" type="text" nome="nome"  id="nome" 
+            <input class="form-control" type="text" name="nome"  id="nome" 
             data-is-module="charCounter" minlength="5" maxlength="60" placeholder="Digite Nome e Sobrenome" 
             required><br>
          </div>
@@ -43,7 +44,7 @@
         </div>-->
         <div class="form-group">
             <label for="nome">Data de Nascimento:</label>
-            <input class="form-control" type="date" nome="dtnasc" id="dtnasc" 
+            <input class="form-control" type="date" name="dtnasc" id="dtnasc" 
             data-is-module="charCounter"  placeholder="Digite sua data de nascimento" 
             required ><br>
         </div>
@@ -55,24 +56,24 @@
              </div>
         <div class="form-group">
             <label for="nome">Endereço:</label>
-            <input class="form-control" type="text" nome="endereco" id="endereco" 
-            data-is-module="charCounter" minlength="10" maxlength="120" placeholder="Digite seu Endereço" 
+            <input class="form-control" type="text" name="endereco" id="endereco" 
+            data-is-module="charCounter" maxlength="120" placeholder="Digite seu Endereço" 
             required><br>
         </div>
         <div class="form-group">
             <label for="nome">Bairro:</label>
-            <input class="form-control" type="text" nome="bairro" id="bairro"
-            data-is-module="charCounter" minlength="10" maxlength="40" placeholder="Digite seu Bairro" 
+            <input class="form-control" type="text" name="bairro" id="bairro"
+            data-is-module="charCounter" maxlength="40" placeholder="Digite seu Bairro" 
             required><br>
         </div>
         <div class="form-group">
             <label for="nome">Cidade:</label>
-            <input class="form-control" type="text" nome="cidade" id="cidade" required data-is-module="charCounter" 
-            minlength="10" maxlength="40" placeholder="Digite sua Cidade" required><br>
+            <input class="form-control" type="text" name="cidade" id="cidade" required data-is-module="charCounter" 
+            maxlength="40" placeholder="Digite sua Cidade" required><br>
             </div>
         <div class="form-group">
             <label for="nome">CEP:</label>
-            <input class="form-control cep" type="text" nome="cep" id="cep" required data-is-module="charCounter" 
+            <input class="form-control cep" type="text" name="cep" id="cep" required data-is-module="charCounter" 
             maxlength="9" placeholder="00000-000" required><br>
         </div>
         <div class="form-group">

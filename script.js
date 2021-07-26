@@ -1,5 +1,8 @@
 $(function(){
 
+         
+        
+    
         $('#sp_celphones').mask('(00) 00000-0000');
         $('#cep').mask('00000-000');
         $("#telefone").mask("(99) 99999-9999"); 
@@ -11,9 +14,14 @@ $(function(){
             return temp;
         }
         
-        document.salvar = salvar;
+
         
-        function salvar() {
+        
+        
+            document.salvar = salvar;
+
+            function salvar(){
+
             try{
 
                 var linhaNova = createDOMElement(`
@@ -28,23 +36,25 @@ $(function(){
                             <td></td>
                         </tr>
                 `);
-
-                setDadosCellValue("nome", linhaNova);
-                setDadosCellValue("dtnasc", linhaNova);
-                setDadosCellValue("telefone", linhaNova);
-                setDadosCellValue("endereco", linhaNova);
-                setDadosCellValue("bairro", linhaNova);
-                setDadosCellValue("cidade", linhaNova);
-                setDadosCellValue("cep", linhaNova);
-                setDadosCellValue("email", linhaNova);
-
                 
+                setCellDadosValue("nome", linhaNova);
+                setCellDadosValue("dtnasc", linhaNova);
+                setCellDadosValue("telefone", linhaNova);
+                setCellDadosValue("endereco", linhaNova);
+                setCellDadosValue("bairro", linhaNova);
+                setCellDadosValue("cidade", linhaNova);
+                setCellDadosValue("cep", linhaNova);
+                setCellDadosValue("email", linhaNova);
+                
+                
+                
+             
             
                 let content = document.getElementById("dados").innerHTML;
+            
 
-                document.getElementById("dados").innerHTML = content + linhaNova.innerHTML;
-
-                
+                document.getElementById("dados").innerHTML = content + linhaNova.innerHTML; 
+                              
 
                 limparCampos();
 
@@ -55,7 +65,7 @@ $(function(){
         }
 
         function limparCampos(){
-            //document.getElementById('nome').value = ''; //JavaScript puro ou Vanilla
+
             $("#nome").val(''); // Jquery
             $("#dtnasc").val(''); 
             $("#telefone").val(''); 
@@ -64,20 +74,6 @@ $(function(){
             $("#cidade").val(''); 
             $("#cep").val(''); 
             $("#email").val(''); 
-
-
- 
-
-
-
-            /*document.getElementById('nome').value = '';
-            document.getElementById('dtnasc').value = '';
-            document.getElementById('telefone').value = '';
-            document.getElementById('endereco').value = '';
-            document.getElementById('bairro').value = '';
-            document.getElementById('cidade').value = '';
-            document.getElementById('cep').value = '';
-            document.getElementById('email').value = '';*/
 
         }
         
@@ -164,9 +160,10 @@ $(function(){
 
 			if(!value.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i))
                 return "Digite um e-mail válido";
+
         }  
 
-        function setDadosCellValue(name, linhaNova) {
+        function setCellDadosValue(name, linhaNova) {
             var error = validacoes[name] && validacoes[name](getFieldValue(name));
         
             if(error){
@@ -185,6 +182,47 @@ $(function(){
             linhaNova.content.firstChild.getElementsByTagName('td')[cellIndex].innerText = value;
         }
         
+
+        
+
+        //function atribuiValorCelulaTabela(name, linhaNova) {
+
+            //obtém valor do campo e atribui a uma variável
+            //var valor = obterValorCampo(name);
+
+            //valida valor do campo e retorna erro se houver.
+            //var error = validacoes[name] && validacoes[name](valor);
+        
+            //se houver erro lança uma exceção
+            //if(error){
+                //throw Error(error);
+            //}
+
+            //armazena nomes dos campos existentes em uma array
+            //var campos = ["nome", "dtnasc", "telefone", "endereco", "bairro", "cidade","cep","email",];
+
+            //obtém o indice de um dos itens da array pelo nome do campo e armazena numa variavel
+            //var indiceCelula = campos.indexOf(name);
+
+            //insere valor na celula na linha nova
+            //linhaNova.content.firstChild.getElementsByTagName('td')[indiceCelula].innerText = valor;
+
+        //}
+
+        function obterValorCampo(name){
+            //document.getElementById(name).value;
+
+            $("#nome").obterValorCampo('');
+            $("#dtnasc").obterValorCampo('');
+            $("#telefone").obterValorCampo('');
+            $("#endereco").obterValorCampo('');
+            $("#bairro").obterValorCampo('');
+            $("#cidade").obterValorCampo('');
+            $("#cep").obterValorCampo('');
+            $("#email").obterValorCampo('');
+        }
+
+        
          /*
             validação
             a aparencia dos campos
@@ -197,4 +235,5 @@ $(function(){
                 bairro: max characteres 40, required
                 cidade: max characteres 40, required
         */
+               
 });
